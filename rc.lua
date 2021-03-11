@@ -1,22 +1,22 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
-pcall(require, "luarocks.loader")
+--pcall(require, "luarocks.loader")
 
--- Standard awesome library
+
+
+
 local gears = require("gears")
 local awful = require("awful")
-require("awful.autofocus")
--- Widget and layout library
 local wibox = require("wibox")
--- Theme handling library
 local beautiful = require("beautiful")
--- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+require("awful.autofocus")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -110,6 +110,11 @@ awful.layout.layouts = {
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
+-- my own widgets
+--praisewidget = wibox.widget.textbox()
+--praisewidget.text = "my first widget | "
+
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -169,47 +174,36 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    -- awful.tag({ "term", "code", "web", "social", "game"}, s, awful.layout.layouts[1])
     awful.tag.add("term", {
-        --icon               = "/path/to/icon1.png",
         layout             = awful.layout.layouts[6],
-        --master_fill_policy = "master_width_factor",
         gap_single_client  = true,
         gap                = 5,
         screen             = s,
         selected           = true,
     })
     awful.tag.add("code", {
-        --icon               = "/path/to/icon1.png",
         layout             = awful.layout.layouts[6],
-        --master_fill_policy = "master_width_factor",
         gap_single_client  = true,
         gap                = 5,
         screen             = s,
         selected           = false,
     })
     awful.tag.add("web", {
-        --icon               = "/path/to/icon1.png",
         layout             = awful.layout.layouts[6],
-        --master_fill_policy = "master_width_factor",
         gap_single_client  = false,
         gap                = 0,
         screen             = s,
         selected           = false,
     })
     awful.tag.add("social", {
-        --icon               = "/path/to/icon1.png",
         layout             = awful.layout.layouts[1],
-        --master_fill_policy = "master_width_factor",
         gap_single_client  = false,
         gap                = 0,
         screen             = s,
         selected           = false,
     })
     awful.tag.add("stuff", {
-        --icon               = "/path/to/icon1.png",
         layout             = awful.layout.layouts[11],
-        --master_fill_policy = "master_width_factor",
         gap_single_client  = false,
         gap                = 0,
         screen             = s,
@@ -221,12 +215,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+    
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
@@ -256,21 +245,21 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            --mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
+            --s.mylayoutbox,
         },
     }
 end)
 -- }}}
 
 -- {{{ Mouse bindings
-root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
-))
+--root.buttons(gears.table.join(
+--    awful.button({ }, 3, function () mymainmenu:toggle() end),
+--    awful.button({ }, 4, awful.tag.viewnext),
+--    awful.button({ }, 5, awful.tag.viewprev)
+--))
 -- }}}
 
 -- {{{ Key bindings
