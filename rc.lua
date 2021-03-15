@@ -190,8 +190,8 @@ awful.screen.connect_for_each_screen(function(s)
     })
     awful.tag.add("web", {
         layout             = awful.layout.layouts[6],
-        gap_single_client  = false,
-        gap                = 0,
+        gap_single_client  = true,
+        gap                = 5,
         screen             = s,
         selected           = false,
     })
