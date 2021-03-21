@@ -49,7 +49,7 @@ end
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/zahbt/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "kitty"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -231,7 +231,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", screen = s, ontop = false, visible = true })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -359,9 +359,19 @@ globalkeys = gears.table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),
-    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    -- -- Menubar
+    -- awful.key({ modkey }, "p", function() menubar.show() end,
+    --           {description = "show the menubar", group = "launcher"}),
+
+    -- hide the wibar
+    awful.key({ modkey }, "b", 
+        function() 
+            for s in screen do
+                s.mywibox.visible = not s.mywibox.visible
+            end
+        end,
+        {description = "hide the wibar", group = "awesome"})       
+
 )
 
 clientkeys = gears.table.join(

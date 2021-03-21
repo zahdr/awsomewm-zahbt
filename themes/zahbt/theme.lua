@@ -9,7 +9,7 @@ local themes_path           = os.getenv("HOME") .. "/.config/awesome/themes/zahb
 local theme_assets          = require("beautiful.theme_assets")
 local theme                 = {}
 
-theme.font                  = "Terminus 9"
+theme.font                  = "Overpass Mono:style=Bold 9"
 theme.wallpaper             = themes_path.."/wall.png"
 theme.bg_normal             = "#000000"
 theme.bg_focus              = "#535d6c"
