@@ -203,7 +203,7 @@ awful.screen.connect_for_each_screen(function(s)
         selected           = false,
     })
     awful.tag.add("stuff", {
-        layout             = awful.layout.layouts[11],
+        layout             = awful.layout.layouts[1],
         gap_single_client  = false,
         gap                = 0,
         screen             = s,
