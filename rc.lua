@@ -606,3 +606,7 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Startup programs
+--awful.util.spawn_with_shell("~/.config/awesome/autorun.sh")
+awful.spawn("xrandr --output DP-0 --mode 1920x1080 --rate 144")
